@@ -2,18 +2,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib
 import re
 
-
-def clean_text(func):
-
-    def wrapper(text):
-
-        text = text.lower()
-        text = re.sub(r"[^a-ая-z0-9\s]", "", text)
-        text = text.strip()
-        
-        return func(text)
-    
-    return wrapper
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r"[^a-zA-Zа-яА-ЯёЁ0-9\s]", "", text)
+    return text.strip()
 
 def train_vectorizer(corpus):
     vectorizer = TfidfVectorizer(max_features=5000)

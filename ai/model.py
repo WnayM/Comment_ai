@@ -6,7 +6,7 @@ class CommentModel:
         self.model = LogisticRegression(max_iter=1000)
     
     def train(self, X, y):
-        self.model(X, y)
+        self.model.fit(X, y)
         
     def predict(self, X):
         return self.model.predict(X)
@@ -17,3 +17,4 @@ class CommentModel:
     @staticmethod
     def load(path='ai/comment_model.pkl'):
         return joblib.load(path)
+    

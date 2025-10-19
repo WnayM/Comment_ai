@@ -1,17 +1,18 @@
-import pandas as pd 
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
-from model import CommentModel
-from preprocess import clean_text, train_vectorizer
+from ai.model import CommentModel
+from ai.preprocess import clean_text, train_vectorizer
 
-def train_model(csv_path: strm= "data/comments.csv"):
-    print("Loading...")
+def train_model(csv_path: str = "data/comments.csv"):
+    print("Loading data...")
     df = pd.read_csv(csv_path)
-
-    if "text" not in df.columns or "label" not in df.colums:
-        raise ValueError("CSV must consist columns: 'text' and 'label'")
+    
+    if "text" not in df.columns or "label" not in df.columns:
+        raise ValueError("CSV must consist : 'text' and 'label'")
     
     df["clean_text"] = df["text"].apply(clean_text)
+    
     print("Training vectorizer...")
     X = train_vectorizer(df["clean_text"])
     y = df["label"]
@@ -28,8 +29,10 @@ def train_model(csv_path: strm= "data/comments.csv"):
     print(classification_report(y_test, y_pred))
     
     model.save()
-    print("Model was saved in 'ai/comment_model.pkl'")
-    print("Vectorizer was saved in 'ai/vectorizer.pkl'")
+    print("Model was saved in : 'ai/comment_model.pkl'")
+    print("Vectorizer was saved in : 'ai/vectorizer.pkl'")
     
 if __name__ == "__main__":
     train_model()
+    
+    
