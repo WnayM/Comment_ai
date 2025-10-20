@@ -13,7 +13,7 @@ def index():
         if comment.strip():
             result = predict_comment(comment)
         else:
-            result = "Введите текст комментария ..."
+            result = "Input comment ..."
 
     return render_template("index.html", result=result, comment=comment)
 

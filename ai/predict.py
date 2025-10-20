@@ -7,7 +7,7 @@ def load_model(model_path: str = "ai/comment_model.pkl"):
 def predict_comment(text: str) -> str:    
     text = text.strip()
     if not text:
-        return "Введите комментарий ..."
+        return "Write the comment ..."
     
     text_clean = clean_text(text)
     vectorizer = load_vectorizer()
@@ -17,10 +17,10 @@ def predict_comment(text: str) -> str:
     
     prediction = model.predict(X)[0]
     
-    return "Хороший коммент" if prediction == 1 else "Плохой коммент"
+    return "Good comment" if prediction == 1 else "Bad comment"
 
 if __name__ == "__main__":
-    example = input("Введите комментарий: ")
+    example = input("Write the comment ")
     print(predict_comment(example))
     
     
